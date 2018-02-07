@@ -4,6 +4,10 @@ import {RouterModule}from '@angular/router';
 import {ReactiveFormsModule}from '@angular/forms';
 
 import {AppComponent }from './app.component';
+import { FormsModule }   from '@angular/forms';
+import{Component}from'@angular/core';
+
+
 
 import {HomePageComponent}from './pages/home-page/home-page.component';
 import {TaskListPageComponent}from './pages/task-list-page/task-list-page.component';
@@ -32,7 +36,8 @@ const ROUTES = [
     BrowserModule,
     NgbModule.forRoot(),
     RouterModule.forRoot(ROUTES),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [TodoService],
   bootstrap: [AppComponent]
