@@ -20,9 +20,16 @@ import {NgbModule}from '@ng-bootstrap/ng-bootstrap';
 
 import {TodoService}from './services/todo.service';
 import { UserService } from './services/users.service';
+import { INITIAL_CONFIG } from './common/config/initial-config';
+import { AppConfiguration } from './common/config/app-configuration.service';
+import { HttpModule } from '@angular/http';
+import { SignInPageComponent } from './pages/sign-in/sign-in-page.component';
+import { AuthService } from './common/auth.service';
+import { AppDataService } from './common/app-data.service';
 
 const ROUTES = [
-{path: '', component: HomePageComponent},
+{ path: '', component: SignInPageComponent },
+{path: 'home', component: HomePageComponent},
 {path: 'tasks', component: TaskListPageComponent},
 {path: 'edit', component: TaskEditPageComponent },
 {path: 'editUser', component: UserEditPageComponent},
@@ -34,6 +41,7 @@ const ROUTES = [
 
 @NgModule({
   declarations: [
+    SignInPageComponent,
     AppComponent,
     HomePageComponent,
     TaskListPageComponent,
@@ -47,9 +55,17 @@ const ROUTES = [
     NgbModule.forRoot(),
     RouterModule.forRoot(ROUTES),
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
-  providers: [TodoService,UserService],
+  providers: [
+    {provide: INITIAL_CONFIG,
+       useValue: {
+         apiURL: 'http://localhost:8080'
+       }
+      }, 
+      TodoService,UserService,AppConfiguration,AuthService,AppDataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

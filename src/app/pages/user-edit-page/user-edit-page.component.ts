@@ -33,7 +33,11 @@ export class UserEditPageComponent implements OnInit {
       this.userForm.get('name').value,
       this.userForm.get('lastname').value,
       this.userForm.get('image').value
-    );
+    ).subscribe(response => {
+      this.router.navigate(['users']);
+    }, error => {
+      console.log('Error Posting in: ' + (error && error.message ? error.message : ''));
+    });
 
     this.router.navigate(['/users']);
   }
