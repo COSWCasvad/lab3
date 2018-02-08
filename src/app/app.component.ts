@@ -16,7 +16,6 @@ export class AppComponent {
   }
 
   search(modalSearch){
-    console.log(modalSearch);
      this.modalService.open(modalSearch);
   }
 
