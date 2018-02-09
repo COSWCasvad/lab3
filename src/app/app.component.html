@@ -69,12 +69,12 @@
 <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="onSubmit()">Search</button>-->
 
 
-<ng-template #modal>
+<ng-template #modal id="modal">
     <div class="modal-header" ng-model="modal">
-        <h4 class="modal-title">Error</h4>
+        <h4 class="modal-title">Mensaje</h4>
     </div>
-    <div class="modal-body">
-        <div>This feature is not implemented yet. Sorry for the inconvenience</div>
+    <div class="modal-body" [innerHTML]="modalBody">
+        
 
     </div>
 </ng-template>
