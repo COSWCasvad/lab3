@@ -42,4 +42,8 @@ export class UserService  extends APIService{
     });
   }
 
+  userByEmail(url:string){
+    return this.get(url);
+  }
+
 }

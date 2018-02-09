@@ -2,6 +2,7 @@ import{Component}from'@angular/core';
 import { FormGroup } from '@angular/forms/src/model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './common/auth.service';
+import { UserService } from './services/users.service';
 
 @Component({
   selector: 'app-root',
@@ -11,13 +12,25 @@ import { AuthService } from './common/auth.service';
 export class AppComponent {
   
   title = 'app';
-  private navForm:FormGroup
-  
-  constructor(private modalService:NgbModal,private authService: AuthService){
+  private navForm:FormGroup;
+  private searchInput:string='';
+  constructor(private modalService:NgbModal,private authService: AuthService,
+      public userService: UserService,
+   ){
 
   }
 
-  search(modalSearch){
+  search(modalSearch,){
+    //console.log(this.searchInput);
+    this.userService.userByEmail('user/byEmail/'+this.searchInput).subscribe(
+      response => {
+        //correcto
+      }, error => {
+        //error
+        
+        
+      }
+    );
      this.modalService.open(modalSearch);
   }
 
