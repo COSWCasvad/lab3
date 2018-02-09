@@ -11,7 +11,7 @@ import { UserService } from '../../services/users.service';
 })
 export class UserEditPageComponent implements OnInit {
   private userForm: FormGroup;
-
+  private userError:string = '';
   constructor(
     public userService: UserService,
     public formBuilder: FormBuilder,
@@ -22,6 +22,9 @@ export class UserEditPageComponent implements OnInit {
 
   ngOnInit() {
     this.userForm = this.formBuilder.group({
+      username: '',
+      email:'',
+      password:'',
       name: '',
       lastname: '',
       image: ''
@@ -30,16 +33,19 @@ export class UserEditPageComponent implements OnInit {
 
   onSubmit() {
     this.userService.create(
+      this.userForm.get('username').value,
+      this.userForm.get('password').value,
+      this.userForm.get('email').value,
       this.userForm.get('name').value,
       this.userForm.get('lastname').value,
       this.userForm.get('image').value
     ).subscribe(response => {
       this.router.navigate(['users']);
     }, error => {
-      console.log('Error Posting in: ' + (error && error.message ? error.message : ''));
+      
+      
+      this.userError = 'Error agregando usuario: ' + (error && error.message ? error.message : '');
     });
-
-    this.router.navigate(['/users']);
   }
 
 }
