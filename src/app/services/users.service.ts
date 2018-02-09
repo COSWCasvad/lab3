@@ -11,7 +11,7 @@ import { AuthService } from '../common/auth.service';
 @Injectable()
 export class UserService  extends APIService{
    
-    private resourceUrl: string = 'api/user/items';
+    private resourceUrl: string = 'user/items';
     private users: User[] = [
     new User("Michael","Jackson","https://www.thefamouspeople.com/profiles/images/michael-jackson-3.jpg"),
     new User('Scarlett',"Johansson", "http://www.myfilmviews.com/wp-content/uploads/2012/12/scarlett_johansson.jpg"),
